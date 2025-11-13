@@ -6,3 +6,11 @@ C:\Users\ПК\source\repos\NET_LAB4\NET_LAB4\bin\Debug\NET_LAB4.pdb
 C:\Users\ПК\source\repos\NET_LAB4\NET_LAB4\obj\Debug\NET_LAB4.exe
 C:\Users\ПК\source\repos\NET_LAB4\NET_LAB4\obj\Debug\NET_LAB4.pdb
 C:\Users\ПК\source\repos\NET_LAB4\NET_LAB4\obj\Debug\NET_LAB4.exe.config
+C:\Users\Administrator\source\repos\Owolon\NETLAB4-main\NET_LAB4\NET_LAB4\bin\Debug\NET_LAB4.exe.config
+C:\Users\Administrator\source\repos\Owolon\NETLAB4-main\NET_LAB4\NET_LAB4\bin\Debug\NET_LAB4.exe
+C:\Users\Administrator\source\repos\Owolon\NETLAB4-main\NET_LAB4\NET_LAB4\bin\Debug\NET_LAB4.pdb
+C:\Users\Administrator\source\repos\Owolon\NETLAB4-main\NET_LAB4\NET_LAB4\obj\Debug\NET_LAB4.csproj.AssemblyReference.cache
+C:\Users\Administrator\source\repos\Owolon\NETLAB4-main\NET_LAB4\NET_LAB4\obj\Debug\NET_LAB4.exe.config
+C:\Users\Administrator\source\repos\Owolon\NETLAB4-main\NET_LAB4\NET_LAB4\obj\Debug\NET_LAB4.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\source\repos\Owolon\NETLAB4-main\NET_LAB4\NET_LAB4\obj\Debug\NET_LAB4.exe
+C:\Users\Administrator\source\repos\Owolon\NETLAB4-main\NET_LAB4\NET_LAB4\obj\Debug\NET_LAB4.pdb

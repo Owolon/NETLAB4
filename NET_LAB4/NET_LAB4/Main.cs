@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System;
 
 namespace NET_LAB4
 {
@@ -10,129 +10,274 @@ namespace NET_LAB4
     {
         static void Main()
         {
-            Console.WriteLine("Задание 1\nФормирование одномерного и двумерного массива");
-            Console.Write("Введите n: ");
-            int n = int.Parse(Console.ReadLine());
-            Console.Write("Введите m: ");
-            int m = int.Parse(Console.ReadLine());
-
-            Random rand = new Random();
-
-            double[] oneD = new double[n];
-            double[,] twoD = new double[n, m];
-
-            for (int i = 0; i < n; i++)
+            while (true)
             {
-                int k = rand.Next(1, 10);
-                oneD[i] = Math.Pow(5, k) / Math.Sqrt(n * (n + 1));
-            }
+                Console.WriteLine("\n1 - Формирование массивов по правилу");
+                Console.WriteLine("2 - Среднеарифметические двух массивов");
+                Console.WriteLine("3 - Сумма элементов главной диагонали");
+                Console.WriteLine("4 - Быстрая сортировка массива");
+                Console.WriteLine("0 - Выход");
+                Console.Write("Введите номер: ");
+                string choice = Console.ReadLine();
 
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < m; j++)
+                if (choice == "0")
                 {
-                    int k = rand.Next(1, 10);
-                    twoD[i, j] = Math.Pow(5, k) / Math.Sqrt(n * (n + 1));
+                    break;
+                }
+
+                switch (choice)
+                {
+                    case "1":
+                        Task1();
+                        break;
+                    case "2":
+                        Task2();
+                        break;
+                    case "3":
+                        Task3();
+                        break;
+                    case "4":
+                        Task4();
+                        break;
+                    default:
+                        Console.WriteLine("Некорректный выбор. Попробуйте еще раз.");
+                        break;
                 }
             }
-
-            Console.WriteLine("Одномерный массив:");
-            for (int i = 0; i < n; i++) Console.Write(oneD[i].ToString("F2") + " ");
-            Console.WriteLine("\nДвумерный массив:");
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < m; j++)
-                    Console.Write(twoD[i, j].ToString("F2") + " ");
-                Console.WriteLine();
-            }
-            Console.WriteLine("\nЗадание 2\nСреднее арифметическое элементов массивов A и B");
-            Console.Write("Введите размер массивов: ");
-            int size = int.Parse(Console.ReadLine());
-            int[] A = new int[size];
-            int[] B = new int[size];
-
-            for (int i = 0; i < size; i++)
-            {
-                A[i] = rand.Next(1, 100);
-                B[i] = rand.Next(1, 100);
-            }
-
-            double avgA = 0, avgB = 0;
-            for (int i = 0; i < size; i++)
-            {
-                avgA += A[i];
-                avgB += B[i];
-            }
-            avgA /= size;
-            avgB /= size;
-
-            Console.WriteLine("Массив A: " + string.Join(" ", A));
-            Console.WriteLine("Массив B: " + string.Join(" ", B));
-            Console.WriteLine("Среднее A = " + avgA.ToString("F2"));
-            Console.WriteLine("Среднее B = " + avgB.ToString("F2"));
-            Console.WriteLine("\nЗадание 3\nСумма элементов на главной диагонали");
-            Console.Write("Введите размер квадратного массива n: ");
-            int sizeD = int.Parse(Console.ReadLine());
-            int[,] arr = new int[sizeD, sizeD];
-            int diagSum = 0;
-
-            for (int i = 0; i < sizeD; i++)
-            {
-                for (int j = 0; j < sizeD; j++)
-                {
-                    arr[i, j] = rand.Next(1, 10);
-                    if (i == j) diagSum += arr[i, j];
-                }
-            }
-
-            Console.WriteLine("Массив:");
-            for (int i = 0; i < sizeD; i++)
-            {
-                for (int j = 0; j < sizeD; j++)
-                    Console.Write(arr[i, j] + " ");
-                Console.WriteLine();
-            }
-
-            Console.WriteLine("Сумма элементов на главной диагонали = " + diagSum);
-            Console.WriteLine("\nЗадание 4\nБыстрая сортировка (упрощённая версия)");
-
-            int[] arrSort = new int[10];
-            for (int i = 0; i < arrSort.Length; i++)
-                arrSort[i] = rand.Next(0, 100);
-
-            Console.WriteLine("Исходный массив:");
-            Console.WriteLine(string.Join(" ", arrSort));
-
-            QuickSort(arrSort, 0, arrSort.Length - 1);
-
-            Console.WriteLine("Отсортированный массив:");
-            Console.WriteLine(string.Join(" ", arrSort));
-
-            Console.WriteLine("\nГотово!");
         }
 
-        // Упрощённая реализация быстрой сортировки без Stack<>
-        static void QuickSort(int[] array, int left, int right)
+        static void Task1()
         {
-            int i = left, j = right;
-            int pivot = array[(left + right) / 2];
+            try
+            {
+                Console.Write("Введите значение n (длина массива): ");
+                int n = int.Parse(Console.ReadLine());
+                Console.Write("Введите значение m (количество столбцов): ");
+                int m = int.Parse(Console.ReadLine());
+                if (n <= 0 || m <= 0)
+                {
+                    Console.WriteLine("Значения n и m должны быть положительными.");
+                    return;
+                }
 
+                Random rand = new Random();
+                double divisor = Math.Sqrt(n * (n + 1));
+
+                double[] array1D = new double[n];
+                double[,] array2D = new double[n, m];
+
+                for (int i = 0; i < n; i++)
+                {
+                    int k = rand.Next(1, 10);
+                    double value = Math.Pow(5, k) / divisor;
+
+                    array1D[i] = value;
+
+                    for (int j = 0; j < m; j++)
+                    {
+                        array2D[i, j] = value;
+                    }
+                }
+
+                Console.WriteLine("Одномерный массив:");
+                foreach (var item in array1D)
+                {
+                    Console.WriteLine($"{item:F1}");
+                }
+
+                Console.WriteLine("Двумерный массив:");
+                for (int i = 0; i < n; i++)
+                {
+                    for (int j = 0; j < m; j++)
+                    {
+                        Console.Write($"{array2D[i, j]:F1} ");
+                    }
+                    Console.WriteLine();
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Некорректный ввод. Пожалуйста, введите целое число.");
+            }
+        }
+
+        static void Task2()
+        {
+            int sizeA, sizeB;
+
+            Console.Write("Введите размер массива A: ");
+            if (!int.TryParse(Console.ReadLine(), out sizeA) || sizeA <= 0)
+            {
+                Console.WriteLine("Некорректный ввод размера A.");
+                return;
+            }
+
+            Console.Write("Введите размер массива B: ");
+            if (!int.TryParse(Console.ReadLine(), out sizeB) || sizeB <= 0)
+            {
+                Console.WriteLine("Некорректный ввод размера B.");
+                return;
+            }
+
+            //Рандоммм
+            double[] A = new double[sizeA];
+            double[] B = new double[sizeB];
+            Random rand = new Random();
+
+            for (int i = 0; i < sizeA; i++)
+            {
+                A[i] = rand.NextDouble() * 100;
+            }
+            for (int i = 0; i < sizeB; i++)
+            {
+                B[i] = rand.NextDouble() * 100;
+            }
+
+            double sumA = 0;
+            foreach (var item in A)
+            {
+                sumA += item;
+            }
+            double meanA = sumA / A.Length;
+
+            double sumB = 0;
+            foreach (var item in B)
+            {
+                sumB += item;
+            }
+            double meanB = sumB / B.Length;
+
+            Console.WriteLine("Массив A:");
+            foreach (var item in A)
+            {
+                Console.Write($"{item:F2} ");
+            }
+            Console.WriteLine($"\nСреднее A: {meanA:F1}");
+
+            Console.WriteLine("Массив B:");
+            foreach (var item in B)
+            {
+                Console.Write($"{item:F1} ");
+            }
+            Console.WriteLine($"\nСреднее B: {meanB:F1}");
+        }
+
+        static void Task3()
+        {
+            try
+            {
+                Console.Write("Введите размер массива n: ");
+                int n = int.Parse(Console.ReadLine());
+                if (n <= 0)
+                {
+                    Console.WriteLine("Размер массива доджен быть положительным числом.");
+                    return; 
+                }
+
+                double[,] A = new double[n, n];
+                Random rand = new Random();
+
+                for (int i = 0; i < n; i++)
+                {
+                    for (int j = 0; j < n; j++)
+                    {
+                        A[i, j] = rand.NextDouble() * 100;
+                    }
+                }
+
+                Console.WriteLine("Массив A:");
+                for (int i = 0; i < n; i++)
+                {
+                    for (int j = 0; j < n; j++)
+                    {
+                        Console.Write($"{A[i, j]:F1} ");
+                    }
+                    Console.WriteLine();
+                }
+
+                double sumDiagonal = 0;
+                for (int i = 0; i < n; i++)
+                {
+                    sumDiagonal += A[i, i];
+                }
+                Console.WriteLine($"Сумма элементов главной диагонали: {sumDiagonal:F1}");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Некорректный ввод. Пожалуйста, введите целое число.");
+            }
+        }
+
+        static void Task4()
+        {
+            try
+            {
+                Console.Write("Введите размер массива для сортировки: ");
+                int size = int.Parse(Console.ReadLine());
+                if (size <= 0)
+                {
+                    Console.WriteLine("Размер должен быть положительным.");
+                    return;
+                }
+
+                double[] array = new double[size];
+                Random rand = new Random();
+
+                for (int i = 0; i < size; i++)
+                {
+                    array[i] = rand.NextDouble() * 100;
+                }
+
+                Console.WriteLine("Массив до сортировки:");
+                foreach (var item in array)
+                {
+                    Console.Write($"{item:F2} ");
+                }
+                Console.WriteLine();
+
+                QuickSort(array, 0, array.Length - 1);
+
+                Console.WriteLine("Массив после сортировки:");
+                foreach (var item in array)
+                {
+                    Console.Write($"{item:F2} ");
+                }
+                Console.WriteLine();
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Некорректный ввод. Пожалуйста, введите целое число.");
+            }
+        }
+
+        static void QuickSort(double[] arr, int left, int right)
+        {
+            if (left >= right)
+                return;
+
+            double pivot = arr[(left + right) / 2];
+            int i = left;
+            int j = right;
             while (i <= j)
             {
-                while (array[i] < pivot) i++;
-                while (array[j] > pivot) j--;
+                while (arr[i] < pivot) 
+                    i++;
+                while (arr[j] > pivot) 
+                    j--;
                 if (i <= j)
                 {
-                    int temp = array[i];
-                    array[i] = array[j];
-                    array[j] = temp;
+                    double temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
                     i++;
                     j--;
                 }
             }
 
-            if (left < j) QuickSort(array, left, j);
-            if (i < right) QuickSort(array, i, right);
+            if (left < j) 
+                QuickSort(arr, left, j);
+            if (i < right) 
+                QuickSort(arr, i, right);
         }
     }
 }
