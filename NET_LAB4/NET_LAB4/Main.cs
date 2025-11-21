@@ -12,7 +12,7 @@ namespace NET_LAB4
         {
             while (true)
             {
-                Console.WriteLine("\n1 - Формирование массивов по правилу");
+                Console.WriteLine("\n1 - Формирование массивов");
                 Console.WriteLine("2 - Среднеарифметические двух массивов");
                 Console.WriteLine("3 - Сумма элементов главной диагонали");
                 Console.WriteLine("4 - Быстрая сортировка массива");
