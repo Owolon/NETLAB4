@@ -61,21 +61,20 @@ namespace NET_LAB4
                 }
 
                 Random rand = new Random();
-                double divisor = Math.Sqrt(n * (n + 1));
 
                 double[] array1D = new double[n];
                 double[,] array2D = new double[n, m];
 
                 for (int i = 0; i < n; i++)
                 {
-                    int k = rand.Next(1, 10);
-                    double value = Math.Pow(5, k) / divisor;
-
-                    array1D[i] = value;
-
                     for (int j = 0; j < m; j++)
                     {
-                        array2D[i, j] = value;
+                    int k = rand.Next(1, 10);
+                    Console.Write("\nСлучайное значение K: {0} ", k);
+                    double value = Math.Pow(5, k) / Math.Sqrt(i * (i + 1));
+
+                    array1D[i] = value;
+                    array2D[i, j] = value;
                     }
                 }
 
@@ -280,4 +279,5 @@ namespace NET_LAB4
                 QuickSort(arr, i, right);
         }
     }
+
 }
